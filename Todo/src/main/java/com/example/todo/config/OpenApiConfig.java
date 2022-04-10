@@ -1,4 +1,4 @@
-package com.example.facade.config;
+package com.example.todo.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -10,10 +10,7 @@ import org.springframework.context.annotation.Configuration;
 public class OpenApiConfig {
     @Bean
     public OpenAPI customOpenAPI() {
-        return new OpenAPI()
-                .components(new Components())
-                .info(new Info()
-                        .title("Facade API")
-                        .version("1.0.0"));
+        return new OpenAPI().components(new Components())
+                .info(new Info().title("Todo API").version("1.0.0"));
     }
 }

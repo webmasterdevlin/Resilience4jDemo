@@ -1,0 +1,46 @@
+server:
+  port: 8080
+
+management:
+  health:
+    circuitbreakers:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+
+resilience4j.ratelimiter:
+  instances:
+    facade:
+      registerHealthIndicator: false
+      #limitForPeriod: 10
+      limitForPeriod: 2
+      limitRefreshPeriod: 1s
+      timeoutDuration: 0
+      eventConsumerBufferSize: 100
+
+resilience4j.retry:
+  instances:
+    facade:
+      waitDuration: 2s
+      maxRetryAttempts: 4
+      registerHealthIndicator: true
+#      enableExponentialBackoff: true
+#      exponentialBackoffMultiplier: 2
+
+
+resilience4j.circuitbreaker:
+  instances:
+    facade:
+      minimumNumberOfCalls: 8
+      waitDurationInOpenState: 60s
+      permittedNumberOfCallsInHalfOpenState: 1 # one successful request to fully close the circuit
+      eventConsumerBufferSize: 10
+      registerHealthIndicator: true
+      automaticTransitionFromOpenToHalfOpenEnabled: true
+
+
