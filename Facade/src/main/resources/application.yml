@@ -17,8 +17,7 @@ resilience4j.retry:
   instances:
     facade:
       waitDuration: 2s
-      maxRetryAttempts: 4
-      registerHealthIndicator: true
+      maxAttempts: 4
 #      enableExponentialBackoff: true
 #      exponentialBackoffMultiplier: 2
       ignoreExceptions:

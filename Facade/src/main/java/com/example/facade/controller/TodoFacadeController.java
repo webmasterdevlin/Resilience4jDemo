@@ -28,8 +28,13 @@ public class TodoFacadeController {
     @CircuitBreaker(name = INSTANCE)
     @GetMapping("/{id}")
     public ResponseEntity<?> getTodoById(@PathVariable("id") int id) {
-        System.out.println("--> FacadeService SENT Request");
-        var response = restTemplate.getForObject("%s/%s".formatted(URL, id), String.class);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        try {
+            System.out.println("--> FacadeService SENT Request");
+            var response = restTemplate.getForObject("%s/%s".formatted(URL, id), String.class);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            System.out.println("--> FacadeService Returned 500 ERROR");
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
