@@ -5,10 +5,7 @@ import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
@@ -28,8 +25,8 @@ public class TodoFacadeController {
     @CircuitBreaker(name = INSTANCE)
     @GetMapping("/{id}")
     public ResponseEntity<?> getTodoById(@PathVariable("id") int id) {
-        System.out.println("--> FacadeService SENT Request");
-        var response = restTemplate.getForObject("%s/%s".formatted(URL, id), String.class);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+            System.out.println("--> FacadeService SENT Request");
+            var response = restTemplate.getForObject("%s/%s".formatted(URL, id), String.class);
+            return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
