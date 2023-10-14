@@ -23,6 +23,6 @@ public class TodoController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
         System.out.println("--> TodoService Returned 200 OK");
-        return new ResponseEntity<>("This is TodoService", HttpStatus.OK);
+        return new ResponseEntity<>("This is a response from the TodoService", HttpStatus.OK);
     }
 }
